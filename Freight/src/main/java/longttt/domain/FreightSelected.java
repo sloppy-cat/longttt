@@ -11,13 +11,13 @@ import longttt.infra.AbstractEvent;
 @ToString
 public class FreightSelected extends AbstractEvent {
 
-    private Integer id;
+    private Long id;
     private String origin;
     private String destination;
     private String status;
-    private Integer freightOwnerId;
     private String carOwnerId;
     private Double fee;
+    private Long freightOwnerId;
 
     public FreightSelected(Freight aggregate) {
         super(aggregate);

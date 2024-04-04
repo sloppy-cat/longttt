@@ -16,7 +16,8 @@ import longttt.domain.FreightRegistered;
 public class Freight {
 
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String origin;
 
@@ -26,7 +27,7 @@ public class Freight {
 
     private String status;
 
-    private Integer freightOwnerId;
+    private Long freightOwnerId;
 
     @PostPersist
     public void onPostPersist() {

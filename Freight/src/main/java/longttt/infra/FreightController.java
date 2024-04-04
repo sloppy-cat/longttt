@@ -26,7 +26,7 @@ public class FreightController {
         produces = "application/json;charset=UTF-8"
     )
     public Freight selectFreight(
-        @PathVariable(value = "id") Integer id,
+        @PathVariable(value = "id") Long id,
         @RequestBody SelectFreightCommand selectFreightCommand,
         HttpServletRequest request,
         HttpServletResponse response

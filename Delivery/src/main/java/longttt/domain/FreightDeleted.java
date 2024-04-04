@@ -9,10 +9,10 @@ import longttt.infra.AbstractEvent;
 @ToString
 public class FreightDeleted extends AbstractEvent {
 
-    private Integer id;
+    private Long id;
     private String origin;
     private String destination;
     private Double fee;
     private String status;
-    private Integer freightOwnerId;
+    private Long freightOwnerId;
 }

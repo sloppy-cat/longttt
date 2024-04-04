@@ -14,7 +14,7 @@
                     >
                     </v-list-item-avatar>
                     <h1 class="align-self-center ml-3">Freight</h1>
-                    <div class="secondary-text-color" style="margin-left:30px;"></div>
+                    <div class="secondary-text-color" style="margin-left:30px;">화물</div>
                 </v-list-item>
             </v-row>
         </v-card>
@@ -27,7 +27,7 @@
                         hide-overlay
                         transition="dialog-bottom-transition"
                 >
-                    <FreightFreight :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
+                    <Freight :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
                             @add="append" v-if="tick"/>
 
                     <v-btn
@@ -74,7 +74,7 @@
             </div>
         </v-col>
         <v-row>
-            <FreightFreight :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
+            <Freight :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
         </v-row>
     </div>
 </template>
@@ -82,12 +82,12 @@
 <script>
 
     const axios = require('axios').default;
-    import FreightFreight from './../FreightFreight.vue';
+    import Freight from './../Freight.vue';
 
     export default {
-        name: 'FreightFreightManager',
+        name: 'FreightManager',
         components: {
-            FreightFreight,
+            Freight,
         },
         props: {
             offline: Boolean

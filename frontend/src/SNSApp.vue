@@ -162,7 +162,7 @@ export default {
         aggregate: [
             { 
                 title: 'Freight', 
-                description: '화물', 
+                description: '', 
                 key: 'freights', 
                 route: '/freights/freights',
                 ImageUrl: '',

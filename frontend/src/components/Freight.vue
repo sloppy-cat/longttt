@@ -39,14 +39,7 @@
                     text
                     @click="save"
                 >
-                    registFreight
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    deleteFreight
+                저장
                 </v-btn>
                 <v-btn
                     color="primary"
@@ -68,20 +61,6 @@
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn
-                v-if="!editMode"
-                color="primary"
-                text
-                @click="openSelectFreight"
-            >
-                SelectFreight
-            </v-btn>
-            <v-dialog v-model="selectFreightDiagram" width="500">
-                <SelectFreightCommand
-                    @closeDialog="closeSelectFreight"
-                    @selectFreight="selectFreight"
-                ></SelectFreightCommand>
-            </v-dialog>
         </v-card-actions>
 
         <v-snackbar
@@ -104,7 +83,7 @@
 
 
     export default {
-        name: 'FreightFreight',
+        name: 'Freight',
         components:{
         },
         props: {
@@ -119,7 +98,6 @@
                 timeout: 5000,
                 text: '',
             },
-            selectFreightDiagram: false,
         }),
 	async created() {
         },
@@ -217,17 +195,16 @@
             change(){
                 this.$emit('input', this.value);
             },
-            async selectFreight(params) {
+            async () {
                 try {
                     if(!this.offline) {
-                        var temp = await axios.put(axios.fixUrl(this.value._links['selectfreight'].href), params)
+                        var temp = await axios.put(axios.fixUrl(this.value._links[''].href))
                         for(var k in temp.data) {
                             this.value[k]=temp.data[k];
                         }
                     }
 
                     this.editMode = false;
-                    this.closeSelectFreight();
                 } catch(e) {
                     this.snackbar.status = true
                     if(e.response && e.response.data.message) {
@@ -237,11 +214,43 @@
                     }
                 }
             },
-            openSelectFreight() {
-                this.selectFreightDiagram = true;
+            async () {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links[''].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
             },
-            closeSelectFreight() {
-                this.selectFreightDiagram = false;
+            async () {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links[''].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
             },
         },
     }
