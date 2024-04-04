@@ -38,56 +38,5 @@ public class Settlement {
         );
         return settlementRepository;
     }
-
-    //<<< Clean Arch / Port Method
-    public static void createSettlement(DeliveryReceived deliveryReceived) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Settlement settlement = new Settlement();
-        repository().save(settlement);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(deliveryReceived.get???()).ifPresent(settlement->{
-            
-            settlement // do something
-            repository().save(settlement);
-
-
-         });
-        */
-
-    }
-
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
-    public static void createSettlement(
-        DeliveryTimeHasPassed deliveryTimeHasPassed
-    ) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Settlement settlement = new Settlement();
-        repository().save(settlement);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(deliveryTimeHasPassed.get???()).ifPresent(settlement->{
-            
-            settlement // do something
-            repository().save(settlement);
-
-
-         });
-        */
-
-    }
-    //>>> Clean Arch / Port Method
-
 }
 //>>> DDD / Aggregate Root
