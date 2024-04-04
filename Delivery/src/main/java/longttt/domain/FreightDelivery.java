@@ -45,15 +45,6 @@ public class FreightDelivery {
         DeliveryCompleted deliveryCompleted = new DeliveryCompleted(this);
         deliveryCompleted.publishAfterCommit();
 
-        //Following code causes dependency to external APIs
-        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
-
-        longttt.external.FreightDelivery freightDelivery = new longttt.external.FreightDelivery();
-        // mappings goes here
-        DeliveryApplication.applicationContext
-            .getBean(longttt.external.FreightDeliveryService.class)
-            .completeDelivery(freightDelivery);
-
         DeliveryTimeHasPassed deliveryTimeHasPassed = new DeliveryTimeHasPassed(
             this
         );
