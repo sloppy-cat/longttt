@@ -15,13 +15,19 @@
                             <v-list-item-title>
                             </v-list-item-title>
                             <v-list-item-subtitle>
-                                CarOwnerId :  {{item.carOwnerId }}
+                                Origin :  {{item.origin }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                Destination :  {{item.destination }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                Fee :  {{item.fee }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                Status :  {{item.status }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
                                 FreightOwnerId :  {{item.freightOwnerId }}
-                            </v-list-item-subtitle>
-                            <v-list-item-subtitle>
-                                State :  {{item.state }}
                             </v-list-item-subtitle>
                         </v-list-item-content>
 
@@ -40,7 +46,7 @@
     const axios = require('axios').default;
 
     export default {
-        name: 'SettlementSettlementPicker',
+        name: 'FreightPicker',
         props: {
             value: [String, Object, Array, Number, Boolean],
         },
@@ -50,14 +56,14 @@
         }),
         async created() {
             var me = this;
-            var temp = await axios.get(axios.fixUrl('/settlements'))
+            var temp = await axios.get(axios.fixUrl('/freights'))
             if(temp.data) {
-                me.list = temp.data._embedded.settlements;
+                me.list = temp.data._embedded.freights;
             }
 
             if(me.value && typeof me.value == "object" && Object.values(me.value)[0]) {
                 var id = Object.values(me.value)[0];
-                var tmpValue = await axios.get(axios.fixUrl('/settlements/' + id))
+                var tmpValue = await axios.get(axios.fixUrl('/freights/' + id))
                 if(tmpValue.data) {
                     var val = tmpValue.data
                     me.list.forEach(function(item, idx) {
@@ -74,6 +80,10 @@
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
                     obj['id'] = arr[4]; 
+                    
+                    
+                    
+                    
                     
                     
                     

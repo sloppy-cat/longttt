@@ -7,6 +7,7 @@ import javax.persistence.*;
 import lombok.Data;
 import longttt.FreightApplication;
 import longttt.domain.FreightDeleted;
+import longttt.domain.FreightRegistered;
 
 @Entity
 @Table(name = "Freight_table")
@@ -15,7 +16,8 @@ import longttt.domain.FreightDeleted;
 public class Freight {
 
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String origin;
 
@@ -25,7 +27,13 @@ public class Freight {
 
     private String status;
 
-    private Integer freightOwnerId;
+    private Long freightOwnerId;
+
+    @PostPersist
+    public void onPostPersist() {
+        FreightRegistered freightRegistered = new FreightRegistered(this);
+        freightRegistered.publishAfterCommit();
+    }
 
     @PostRemove
     public void onPostRemove() {
@@ -46,15 +54,6 @@ public class Freight {
         return freightRepository;
     }
 
-    //<<< Clean Arch / Port Method
-    public void registFreight(RegistFreightCommand registFreightCommand) {
-        //implement business logic here:
-
-        FreightRegistered freightRegistered = new FreightRegistered(this);
-        freightRegistered.publishAfterCommit();
-    }
-
-    //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public void selectFreight(SelectFreightCommand selectFreightCommand) {
         //implement business logic here:

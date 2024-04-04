@@ -34,8 +34,9 @@ public class PolicyHandler {
         System.out.println(
             "\n\n##### listener RegisterDelivery : " + freightSelected + "\n\n"
         );
-        // Sample Logic //
 
+        // Sample Logic //
+        FreightDelivery.registerDelivery(event);
     }
 
     @StreamListener(
@@ -49,8 +50,9 @@ public class PolicyHandler {
         System.out.println(
             "\n\n##### listener DeleteDelivery : " + freightDeleted + "\n\n"
         );
-        // Sample Logic //
 
+        // Sample Logic //
+        FreightDelivery.deleteDelivery(event);
     }
 }
 //>>> Clean Arch / Inbound Adaptor

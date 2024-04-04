@@ -1,18 +1,24 @@
 <template>
     <v-card outlined>
         <v-card-title>
-            Settlement # {{item._links.self.href.split("/")[item._links.self.href.split("/").length - 1]}}
+            Freight # {{item._links.self.href.split("/")[item._links.self.href.split("/").length - 1]}}
         </v-card-title>
 
         <v-card-text>
             <div>
-                <Number label="CarOwnerId" v-model="item.carOwnerId" :editMode="editMode" @change="change" />
+                <String label="Origin" v-model="item.origin" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <String label="Destination" v-model="item.destination" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <Number label="Fee" v-model="item.fee" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <String label="Status" v-model="item.status" :editMode="editMode" @change="change" />
             </div>
             <div>
                 <Number label="FreightOwnerId" v-model="item.freightOwnerId" :editMode="editMode" @change="change" />
-            </div>
-            <div>
-                <String label="State" v-model="item.state" :editMode="editMode" @change="change" />
             </div>
         </v-card-text>
 
@@ -60,7 +66,7 @@
     const axios = require('axios').default;
 
     export default {
-        name: 'SettlementSettlementDetail',
+        name: 'FreightDetail',
         components:{},
         props: {
         },
@@ -71,7 +77,7 @@
         async created() {
             var me = this;
             var params = this.$route.params;
-            var temp = await axios.get(axios.fixUrl('/settlements/' + params.id))
+            var temp = await axios.get(axios.fixUrl('/freights/' + params.id))
             if(temp.data) {
                 me.item = temp.data
             }

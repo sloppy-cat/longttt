@@ -31,7 +31,7 @@
                         </v-fab-transition>
                     </template>
 
-                    <SettlementSettlement :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
+                    <Freight :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
                 
                     <v-btn
                             style="postition:absolute; top:2%; right:2%"
@@ -50,12 +50,12 @@
 
 <script>
     const axios = require('axios').default;
-    import SettlementSettlement from './../SettlementSettlement.vue';
+    import Freight from './../Freight.vue';
 
     export default {
-        name: 'SettlementSettlementManager',
+        name: 'FreightManager',
         components: {
-            SettlementSettlement,
+            Freight,
         },
         props: {
             offline: Boolean,
@@ -67,11 +67,13 @@
             headers: 
                 [
                     { text: "id", value: "id" },
-                    { text: "carOwnerId", value: "carOwnerId" },
+                    { text: "origin", value: "origin" },
+                    { text: "destination", value: "destination" },
+                    { text: "fee", value: "fee" },
+                    { text: "status", value: "status" },
                     { text: "freightOwnerId", value: "freightOwnerId" },
-                    { text: "state", value: "state" },
                 ],
-            settlement : [],
+            freight : [],
             newValue: {},
             tick : true,
             openDialog : false,
@@ -82,14 +84,16 @@
                 return;
             }
 
-            var temp = await axios.get(axios.fixUrl('/settlements'))
-            temp.data._embedded.settlements.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
-            this.values = temp.data._embedded.settlements;
+            var temp = await axios.get(axios.fixUrl('/freights'))
+            temp.data._embedded.freights.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
+            this.values = temp.data._embedded.freights;
 
             this.newValue = {
-                'carOwnerId': 0,
+                'origin': '',
+                'destination': '',
+                'fee': 0,
+                'status': '',
                 'freightOwnerId': 0,
-                'state': '',
             }
         },
         methods: {

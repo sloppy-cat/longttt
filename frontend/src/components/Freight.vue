@@ -9,16 +9,18 @@
         </template>
 
         <v-card-title v-if="value._links">
-            Settlement # {{decode(value._links.self.href.split("/")[value._links.self.href.split("/").length - 1])}}
+            Freight # {{decode(value._links.self.href.split("/")[value._links.self.href.split("/").length - 1])}}
         </v-card-title >
         <v-card-title v-else>
-            Settlement
+            Freight
         </v-card-title >        
 
         <v-card-text>
-            <Number label="CarOwnerId" v-model="value.carOwnerId" :editMode="editMode" :inputUI="''"/>
+            <String label="Origin" v-model="value.origin" :editMode="editMode" :inputUI="''"/>
+            <String label="Destination" v-model="value.destination" :editMode="editMode" :inputUI="''"/>
+            <Number label="Fee" v-model="value.fee" :editMode="editMode" :inputUI="''"/>
+            <String label="Status" v-model="value.status" :editMode="editMode" :inputUI="''"/>
             <Number label="FreightOwnerId" v-model="value.freightOwnerId" :editMode="editMode" :inputUI="''"/>
-            <String label="State" v-model="value.state" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions>
@@ -37,14 +39,7 @@
                     text
                     @click="save"
                 >
-                    settlementPayment
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    CreateSettlement
+                저장
                 </v-btn>
                 <v-btn
                     color="primary"
@@ -88,7 +83,7 @@
 
 
     export default {
-        name: 'SettlementSettlement',
+        name: 'Freight',
         components:{
         },
         props: {
@@ -143,7 +138,7 @@
 
                     if(!this.offline) {
                         if(this.isNew) {
-                            temp = await axios.post(axios.fixUrl('/settlements'), this.value)
+                            temp = await axios.post(axios.fixUrl('/freights'), this.value)
                         } else {
                             temp = await axios.put(axios.fixUrl(this.value._links.self.href), this.value)
                         }
@@ -199,6 +194,63 @@
             },
             change(){
                 this.$emit('input', this.value);
+            },
+            async () {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links[''].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async () {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links[''].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async () {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links[''].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
             },
         },
     }

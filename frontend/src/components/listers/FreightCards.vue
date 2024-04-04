@@ -13,8 +13,8 @@
                         class="border-color"
                     >
                     </v-list-item-avatar>
-                    <h1 class="align-self-center ml-3">Settlement</h1>
-                    <div class="secondary-text-color" style="margin-left:30px;"></div>
+                    <h1 class="align-self-center ml-3">Freight</h1>
+                    <div class="secondary-text-color" style="margin-left:30px;">화물</div>
                 </v-list-item>
             </v-row>
         </v-card>
@@ -27,7 +27,7 @@
                         hide-overlay
                         transition="dialog-bottom-transition"
                 >
-                    <SettlementSettlement :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
+                    <Freight :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
                             @add="append" v-if="tick"/>
 
                     <v-btn
@@ -66,7 +66,7 @@
                                 color="primary"
                                 style="font-weight:500; font-size:20px; padding:15px; border:solid 2px; max-width:250px; overflow:hidden"
                             >
-                                Settlement 등록
+                                Freight 등록
                             </v-btn>
                         </v-card-actions>
                     </v-card>
@@ -74,7 +74,7 @@
             </div>
         </v-col>
         <v-row>
-            <SettlementSettlement :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
+            <Freight :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
         </v-row>
     </div>
 </template>
@@ -82,12 +82,12 @@
 <script>
 
     const axios = require('axios').default;
-    import SettlementSettlement from './../SettlementSettlement.vue';
+    import Freight from './../Freight.vue';
 
     export default {
-        name: 'SettlementSettlementManager',
+        name: 'FreightManager',
         components: {
-            SettlementSettlement,
+            Freight,
         },
         props: {
             offline: Boolean
@@ -105,13 +105,15 @@
                 return;
             } 
 
-            var temp = await axios.get(axios.fixUrl('/settlements'))
-            me.values = temp.data._embedded.settlements;
+            var temp = await axios.get(axios.fixUrl('/freights'))
+            me.values = temp.data._embedded.freights;
             
             me.newValue = {
-                'carOwnerId': 0,
+                'origin': '',
+                'destination': '',
+                'fee': 0,
+                'status': '',
                 'freightOwnerId': 0,
-                'state': '',
             }
         },
         methods:{

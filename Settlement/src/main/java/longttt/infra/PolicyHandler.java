@@ -34,9 +34,8 @@ public class PolicyHandler {
         System.out.println(
             "\n\n##### listener CreateSettlement : " + deliveryReceived + "\n\n"
         );
-
         // Sample Logic //
-        Settlement.createSettlement(event);
+
     }
 
     @StreamListener(
@@ -52,9 +51,8 @@ public class PolicyHandler {
             deliveryTimeHasPassed +
             "\n\n"
         );
-
         // Sample Logic //
-        Settlement.createSettlement(event);
+
     }
 }
 //>>> Clean Arch / Inbound Adaptor

@@ -35,13 +35,13 @@ public class FreightDelivery {
     private Long freightOwnerId;
 
     @PostPersist
-    public void onPostPersist() {
-        DeliveryStarted deliveryStarted = new DeliveryStarted(this);
-        deliveryStarted.publishAfterCommit();
-    }
+    public void onPostPersist() {}
 
     @PostUpdate
     public void onPostUpdate() {
+        DeliveryStarted deliveryStarted = new DeliveryStarted(this);
+        deliveryStarted.publishAfterCommit();
+
         DeliveryCompleted deliveryCompleted = new DeliveryCompleted(this);
         deliveryCompleted.publishAfterCommit();
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-    <h1>Settlement</h1>
+    <h1>Freight</h1>
         <v-row>
             <v-card
                 class="mx-auto"
@@ -26,7 +26,7 @@
                         color="primary"
                         style="font-weight:500; font-size:20px; padding:15px; border:solid 2px; max-width:250px; overflow:hidden"
                     >
-                        Settlement 등록
+                        Freight 등록
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -44,13 +44,17 @@
                             
                             
                             
+                            
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
                             [ Id :  {{data.id }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ CarOwnerId :  {{data.carOwnerId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Origin :  {{data.origin }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Destination :  {{data.destination }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Fee :  {{data.fee }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Status :  {{data.status }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ FreightOwnerId :  {{data.freightOwnerId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ State :  {{data.state }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -70,7 +74,7 @@
                         transition="dialog-bottom-transition"
                 >
 
-                    <SettlementSettlement :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
+                    <Freight :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
                 
                     <v-btn
                             style="postition:absolute; top:2%; right:2%"
@@ -89,12 +93,12 @@
 
 <script>
     const axios = require('axios').default;
-    import SettlementSettlement from './../SettlementSettlement.vue';
+    import Freight from './../Freight.vue';
 
     export default {
-        name: 'SettlementSettlementManager',
+        name: 'FreightManager',
         components: {
-            SettlementSettlement,
+            Freight,
         },
         props: {
             offline: Boolean,
@@ -113,14 +117,16 @@
                 return;
             } 
 
-            var temp = await axios.get(axios.fixUrl('/settlements'))
-            temp.data._embedded.settlements.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
-            this.values = temp.data._embedded.settlements;
+            var temp = await axios.get(axios.fixUrl('/freights'))
+            temp.data._embedded.freights.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
+            this.values = temp.data._embedded.freights;
             
             this.newValue = {
-                'carOwnerId': 0,
+                'origin': '',
+                'destination': '',
+                'fee': 0,
+                'status': '',
                 'freightOwnerId': 0,
-                'state': '',
             }
         },
         methods: {

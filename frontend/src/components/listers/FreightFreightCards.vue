@@ -14,7 +14,7 @@
                     >
                     </v-list-item-avatar>
                     <h1 class="align-self-center ml-3">Freight</h1>
-                    <div class="secondary-text-color" style="margin-left:30px;">화물</div>
+                    <div class="secondary-text-color" style="margin-left:30px;"></div>
                 </v-list-item>
             </v-row>
         </v-card>

@@ -40,21 +40,7 @@
                     text
                     @click="save"
                 >
-                    RegisterDelivery
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    DeleteDelivery
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    CompleteDelivery
+                    UpdateDelivery
                 </v-btn>
                 <v-btn
                     color="primary"
