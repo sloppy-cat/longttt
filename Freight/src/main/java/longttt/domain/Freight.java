@@ -59,6 +59,7 @@ public class Freight {
         //implement business logic here:
 
         FreightSelected freightSelected = new FreightSelected(this);
+        freightSelected.setCarOwnerId(selectFreightCommand.getCarOwnerId().toString());
         freightSelected.publishAfterCommit();
     }
     //>>> Clean Arch / Port Method
