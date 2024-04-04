@@ -22,12 +22,13 @@ public class Settlement {
 
     private Long freightOwnerId;
 
-    private Double fee;
-
     private String state;
 
     @PostPersist
-    public void onPostPersist() {
+    public void onPostPersist() {}
+
+    @PostUpdate
+    public void onPostUpdate() {
         SettlementPaid settlementPaid = new SettlementPaid(this);
         settlementPaid.publishAfterCommit();
     }

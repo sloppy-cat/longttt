@@ -69,7 +69,6 @@
                     { text: "id", value: "id" },
                     { text: "carOwnerId", value: "carOwnerId" },
                     { text: "freightOwnerId", value: "freightOwnerId" },
-                    { text: "fee", value: "fee" },
                     { text: "state", value: "state" },
                 ],
             settlement : [],
@@ -90,7 +89,6 @@
             this.newValue = {
                 'carOwnerId': 0,
                 'freightOwnerId': 0,
-                'fee': 0,
                 'state': '',
             }
         },

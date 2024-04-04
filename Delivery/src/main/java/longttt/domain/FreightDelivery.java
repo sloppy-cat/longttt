@@ -60,14 +60,68 @@ public class FreightDelivery {
         deliveryCanceled.publishAfterCommit();
     }
 
-    @PreRemove
-    public void onPreRemove() {}
-
     public static FreightDeliveryRepository repository() {
         FreightDeliveryRepository freightDeliveryRepository = DeliveryApplication.applicationContext.getBean(
             FreightDeliveryRepository.class
         );
         return freightDeliveryRepository;
     }
+
+    //<<< Clean Arch / Port Method
+    public static void registerDelivery(FreightSelected freightSelected) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        FreightDelivery freightDelivery = new FreightDelivery();
+        repository().save(freightDelivery);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(freightSelected.get???()).ifPresent(freightDelivery->{
+            
+            freightDelivery // do something
+            repository().save(freightDelivery);
+
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public static void deleteDelivery(FreightDeleted freightDeleted) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        FreightDelivery freightDelivery = new FreightDelivery();
+        repository().save(freightDelivery);
+
+        FreightDeleted freightDeleted = new FreightDeleted(freightDelivery);
+        freightDeleted.publishAfterCommit();
+        DeliveryCanceled deliveryCanceled = new DeliveryCanceled(freightDelivery);
+        deliveryCanceled.publishAfterCommit();
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(freightDeleted.get???()).ifPresent(freightDelivery->{
+            
+            freightDelivery // do something
+            repository().save(freightDelivery);
+
+            FreightDeleted freightDeleted = new FreightDeleted(freightDelivery);
+            freightDeleted.publishAfterCommit();
+            DeliveryCanceled deliveryCanceled = new DeliveryCanceled(freightDelivery);
+            deliveryCanceled.publishAfterCommit();
+
+         });
+        */
+
+    }
+    //>>> Clean Arch / Port Method
+
 }
 //>>> DDD / Aggregate Root

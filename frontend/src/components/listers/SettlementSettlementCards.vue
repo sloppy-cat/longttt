@@ -111,7 +111,6 @@
             me.newValue = {
                 'carOwnerId': 0,
                 'freightOwnerId': 0,
-                'fee': 0,
                 'state': '',
             }
         },

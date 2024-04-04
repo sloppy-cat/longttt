@@ -12,6 +12,5 @@ public class SettlementPaid extends AbstractEvent {
     private Long id;
     private Long carOwnerId;
     private Long freightOwnerId;
-    private Double fee;
     private String state;
 }

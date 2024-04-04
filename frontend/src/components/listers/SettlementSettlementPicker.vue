@@ -21,9 +21,6 @@
                                 FreightOwnerId :  {{item.freightOwnerId }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
-                                Fee :  {{item.fee }}
-                            </v-list-item-subtitle>
-                            <v-list-item-subtitle>
                                 State :  {{item.state }}
                             </v-list-item-subtitle>
                         </v-list-item-content>
@@ -77,8 +74,6 @@
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
                     obj['id'] = arr[4]; 
-                    
-                    
                     
                     
                     

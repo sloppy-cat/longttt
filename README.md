@@ -43,7 +43,7 @@ mvn spring-boot:run
 ```
 - Settlement
 ```
- http :8088/settlements id="id" carOwnerId="carOwnerId" freightOwnerId="freightOwnerId" fee="fee" state="state" 
+ http :8088/settlements id="id" carOwnerId="carOwnerId" freightOwnerId="freightOwnerId" state="state" 
 ```
 - Arlim
 ```

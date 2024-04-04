@@ -44,14 +44,12 @@
                             
                             
                             
-                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
                             [ Id :  {{data.id }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ CarOwnerId :  {{data.carOwnerId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ FreightOwnerId :  {{data.freightOwnerId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ Fee :  {{data.fee }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ State :  {{data.state }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
@@ -122,7 +120,6 @@
             this.newValue = {
                 'carOwnerId': 0,
                 'freightOwnerId': 0,
-                'fee': 0,
                 'state': '',
             }
         },

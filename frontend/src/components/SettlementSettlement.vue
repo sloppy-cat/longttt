@@ -18,7 +18,6 @@
         <v-card-text>
             <Number label="CarOwnerId" v-model="value.carOwnerId" :editMode="editMode" :inputUI="''"/>
             <Number label="FreightOwnerId" v-model="value.freightOwnerId" :editMode="editMode" :inputUI="''"/>
-            <Number label="Fee" v-model="value.fee" :editMode="editMode" :inputUI="''"/>
             <String label="State" v-model="value.state" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 

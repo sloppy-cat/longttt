@@ -12,9 +12,6 @@
                 <Number label="FreightOwnerId" v-model="item.freightOwnerId" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <Number label="Fee" v-model="item.fee" :editMode="editMode" @change="change" />
-            </div>
-            <div>
                 <String label="State" v-model="item.state" :editMode="editMode" @change="change" />
             </div>
         </v-card-text>
