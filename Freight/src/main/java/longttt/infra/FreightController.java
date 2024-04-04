@@ -21,22 +21,6 @@ public class FreightController {
     FreightRepository freightRepository;
 
     @RequestMapping(
-        value = "freights/",
-        method = RequestMethod.POST,
-        produces = "application/json;charset=UTF-8"
-    )
-    public Freight registFreight(
-        HttpServletRequest request,
-        HttpServletResponse response,
-        @RequestBody Freight freight
-    ) throws Exception {
-        System.out.println("##### /freight/registFreight  called #####");
-        freight.registFreight(registFreightcommand);
-        freightRepository.save(freight);
-        return freight;
-    }
-
-    @RequestMapping(
         value = "freights/{id}/selectfreight",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
